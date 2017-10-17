@@ -6,6 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Jose Antonio Gar",
-  "license": "MIT"
+  "author": "Jose Antonio Garcia",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.2"
+  }
 }
