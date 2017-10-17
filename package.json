@@ -1,0 +1,11 @@
+{
+  "name": "lazyfy",
+  "version": "1.0.0",
+  "description": "Proyecto de API Rest con NodeJS para aplicacion de musica para la clase de desarrollo web.",
+  "main": "index.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jose Antonio Gar",
+  "license": "MIT"
+}
