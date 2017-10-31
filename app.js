@@ -5,19 +5,13 @@ let bodyParser = require('body-parser');
 
 let app = express();
 
-//C argar rutas
-let user_routes=require('./routes/user')
+//cargar rutas
 
 app.use(bodyParser.urlencoded({extended:false}))
 app.use(bodyParser.json())
 
-//  Configurar cabecer http
+// configurar cabeceras http
 
-//  Crear las rutas base
-//  app.get('/pruebas',function(req, res){
-//  res.status(200).send({message: 'Bienvenido al curso de desarrollo web'})
-//  });
-
-app.use('/api', user_routes);
+// crear las rutas base
 
 module.exports = app;
