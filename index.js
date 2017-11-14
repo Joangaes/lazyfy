@@ -1,18 +1,13 @@
 'use strict'
 
-let mongoose = require('mongoose');
+var mongoose = require('mongoose');
+var log = console.log;
 
-let app = require('./app');
-let port = process.env.PORT || 3000;
+var app = require('./app');
+var port = process.env.PORT || 3000;
 
-// crear conexion a base
-mongoose.connect('mongodb://localhost/lazyfy', (err) => {
+mongoose.connect('mongodb://localhost/mean2', err => {
   if (err) throw err
-  console.log('La base de datos se ha conectado')
-
-  app.listen(port, (err) => {
-    if (err) throw err
-      console.log('Escuchando en puerto ' + port)
-  })
-
-} )
+  log('La base de datos se ha conectado')
+  app.listen(port, err => log("Escuchando en puerto " + port))
+}) 

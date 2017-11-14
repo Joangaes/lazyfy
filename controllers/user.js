@@ -2,6 +2,13 @@
 
 var bcrypt = require('bcrypt-nodejs'); //encripta contraseñas
 var User = require('../models/user'); // carga el modelo
+var jwt = require('../services/jwt');
+
+// Crear accion para enlistar usuarios en controlador
+const listUsers = (req, res) =>
+ User.find({})
+ .then(users => res.status(200).json(users))
+ .catch(err => res.status(500).json({message: 'Error al enlistar usuarios'}))
 
 
 //acción del controlador
@@ -22,7 +29,7 @@ function saveUser(req, res){
   user.name = params.name;
   user.surname = params.surname;
   user.email = params.email;
-  user.role = 'ROLE_ADMIN';
+  user.role = 'ROLE_USER';
   user.image = 'null';
 
   // guarda en base de datos la información
@@ -51,8 +58,38 @@ function saveUser(req, res){
 
 }
 
-
-module.exports={
-  prueba,
-  saveUser
+function loginUser(req,res){
+ const params = req.body
+ const email = params.email
+ const password = params.password
+ User.findOne({email: email.toLowerCase()}, (err, user) => {
+   if (err) return res.status(500).send({message: 'Error del sistema'})
+   if (!user) return res.status(404).send({message: 'El usuario no existe'})
+   bcrypt.compare(password, user.password, function(err, check) {
+     if (check) {
+       //Devolver los datos del usuario logueado
+       if (params.gethash){
+       // generar un token de JWT con todos los datos del usuario
+         res.status(200).send({
+          token: jwt.createToken(user)
+         })
+       }
+       else {
+        res.status(200).send({user})
+       }
+      } 
+      else {
+        res.status(404).send({message: 'Contraseña incorrecta'})
+      }
+    })
+  })
 }
+
+
+module.exports = {
+ prueba,
+ saveUser,
+ loginUser,
+ listUsers
+}
+

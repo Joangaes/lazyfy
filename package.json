@@ -1,14 +1,14 @@
 {
   "name": "lazyfy",
   "version": "1.0.0",
-  "description": "Proyecto de API Rest con NodeJS para aplicacion de musica para la clase de desarrollo web.",
-  "main": "index.",
+  "description": "Proyecto de app musical para desarollo web",
+  "main": "index.js",
   "scripts": {
-    "start":"nodemon index.js",
+    "start": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Jose Antonio Garcia",
-  "license": "MIT",
+  "author": "Andrea Oviedo",
+  "license": "ISC",
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.18.2",
